@@ -1,4 +1,4 @@
-<div id="page-wrapper">
+<div id="page-wrapper"  style="background-color:black; color:#1E88E5">
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
@@ -15,24 +15,34 @@
         <div class="col-md-4 col-lg-3">
             <div class="row">
                 <div class="col-xs-6 col-md-12">
-                    <div class="well">Saldo : <B>{{ @me->saldo }}</B></div>                    
+                    <div class="well"  style="background-color:black;">Account Points: <B>{{ @me->saldo }}</B></div>                    
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
+                        <div class="panel-heading text-center"  style="background-color:black; color:white">
                             <b>{{ @server->servername }}</b> {{ @server->active==1?'':'( Locked )'}}
                         </div>
-                        <table class="table">
+                        <table class="table"  style="background-color:black;">
                             <tr>
-                                <td>Lokasi</td><td>{{ @server->country }}</td>
-                            </tr>
-                            <tr>
-                                <td>Host</td><td>{{ @server->host }}</td>
-                            </tr>
-                            <tr>
-                                <td>Harga</td><td>{{ @server->price }}</td>
-                            </tr>
+                            <td style="color:#BFBFBF"><b>Location:</b></td><td>{{ @server->country }}</td>
+                        </tr>
+                        <tr>
+                            <td style="color:#BFBFBF"><b>Host:</b></td><td>{{ @server->host }}</td>
+                        </tr>
+			<tr>
+                            <td style="color:#BFBFBF"><b>Port Squid:</b></td><td>14344, 8080</td>
+                        </tr>
+			<tr>
+                            <td style="color:#BFBFBF"><b>Protocol:</b></td><td>TCP/UDP</td>
+                        </tr>
+			<tr>
+                            <td style="color:#BFBFBF"><b>Active Days:</b></td><td>1000 Years</td>
+                        </tr>
+
+                        <tr>
+                            <td style="color:#BFBFBF"><b>Points:</b></td><td>{{ @server->price }}</td>
+                        </tr>
                         </table>
                     </div>
                 </div>
@@ -40,25 +50,25 @@
         </div>
         <div class="col-md-6">
             <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-shopping-cart fa-fw"></i> Server Settings
+                <div class="panel-heading"  style="background-color:black; color:white">
+                    <i class="fa fa-shopping-cart fa-fw"></i> Create Bytehax Account
                 </div>
-                <div class="panel-body">
+                <div class="panel-body"  style="background-color:black;">
                     <form role="form" action="{{ @URI }}" method="POST">
                         <div class="form-group">
                             <label>Username</label>
-                            <input class="form-control" placeholder="Sudirman" name="user" type="text" required>
+                            <input class="form-control" placeholder="Username" name="user" type="text" required>
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input class="form-control" placeholder="New Password" name="pass" type="password" required>
+                            <input class="form-control" placeholder="Password" name="pass" type="password" required>
                         </div>
                         <div class="form-group">
-                            <label>Masukan Ulang Password</label>
+                            <label>Re-Enter Password</label>
                             <input class="form-control" placeholder="Re-enter Password" name="pass_confirmation" type="password" required>
                         </div>
-                        <button class="btn btn-primary">Simpan</button>
-                        <a href="/home/member/server" class="btn btn-default">Kembali</a>
+                        <button class="btn btn-primary"  >Create</button>
+                        <a href="/home/member/server" class="btn btn-default">Cancel</a>
                     </form>
                 </div>
             </div>
