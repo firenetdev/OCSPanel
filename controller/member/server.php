@@ -31,7 +31,7 @@ class Server extends \Home {
 		$server = $this->loadServer();
 		$account = new \Webmin($server);
 		if (($saldo = $this->me->saldo)<$server->price) {
-			$this->flash('Saldo Anda Kurang, Hub Admin utk Deposit');
+			$this->flash('Insufficient Points');
 			$f3->reroute($f3->get('URI'));
 		}
 		if ( ! $account->check($f3->get('POST.user'))) {
@@ -42,20 +42,20 @@ class Server extends \Home {
 		$account->real = $this->me->username;
 		if ($f3->exists('POST.pass',$pass)) {
 			if ( ! \Check::Confirm('POST.pass')) {
-				$this->flash('Konfirmasi Password Tidak Cocok');
+				$this->flash('Password confirmation not match');
 				$f3->reroute($f3->get('URI'));
 			}
 			$account->pass = $account->crypt($pass);
 		}
-		$active = date("Y/m/d",strtotime("+30 days"));
+		$active = date("Y/m/d",strtotime("+1000 year"));
 		$account->expire = \Webmin::exp_encode($active);
 		if( ! $account->save()) {
-			$this->flash('Gagal, Coba Beberapa Saat Lagi');
+			$this->flash('Failed, Please try again later');
 			$f3->reroute($f3->get('URI'));
 		}
 		$this->me->saldo = $this->me->saldo-$server->price;
 		$this->me->save();
-		$this->flash('Pembelian Account Berhasil','success');
+		$this->flash('Success, Account Created','success');
 		$f3->set('SESSION.uid',$account->uid);
 		$f3->set('SESSION.pass',$pass);
 		$f3->reroute($f3->get('URI').'/success');
